@@ -155,3 +155,65 @@ function stringCompression(string) {
 }
 
 console.log(stringCompression("aabcccccaaa"));
+
+// 1.7   Space: O(1) Time:O(n2)
+
+function rotateMatrix(array) {
+  let pointer = array.length - 1;
+
+  for (let i = 0; i < array.length; i++) {
+    const currentPointer = array[i][pointer];
+
+    for (let j = array.length - 1; j >= 0; j--) {
+      array[j][array.length - 1 - i] = currentPointer;
+    }
+
+    pointer--;
+  }
+  displayArrayOnConsole(array);
+}
+
+rotateMatrix([
+  [1, 1, 1],
+  [2, 2, 2],
+  [3, 3, 3],
+]);
+
+function displayArrayOnConsole(array) {
+  array.map((item) => {
+    console.log(item);
+  });
+}
+
+// 1.8    Time:O(n2)
+function matrixHasZeroItem(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array[0].length; j++) {
+      if (array[i][j] === 0) return setMatrixToZero(array);
+    }
+  }
+
+  return array;
+}
+
+function setMatrixToZero(array) {
+  const zerosArray = array.map((row) => row.map((item) => (item = 0)));
+  console.log(zerosArray);
+}
+
+matrixHasZeroItem([
+  [1, 1, 0],
+  [2, 2, 2],
+  [3, 3, 3],
+]);
+
+// 1.9   Space: O(1) Time:O(n)
+function stringRotation(str1, str2) {
+  const newString = str1 + str1;
+  return newString.includes(str2);
+}
+
+console.log(
+  "stringRotation(erbottlewat, waterbottle): " +
+    stringRotation("erbottlewat", "waterbottle")
+);
